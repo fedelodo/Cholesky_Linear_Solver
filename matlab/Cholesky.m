@@ -1,19 +1,32 @@
 close all;
 clear all;
 
-fileName = 'ex15.mat';
+%fileName = 'ex15.mat';
 %fileName = 'shallow_water1.mat';
 %fileName = 'apache2.mat';
+%fileName = 'cfd2.mat';
+fileName = 'StocF-1465';
 
-path = 'C:\\Users\\lisac\\OneDrive - Universita degli Studi di Milano-Bicocca\\Magistrale\\Appunti magistrale\\2° semestre\\Metodi del calcolo scientifico\\Progetti\\Progetto1\\Matrix\\';
+path = '../matrixes/';
 load(sprintf(strcat(path,'%s'), fileName));
 
 A = Problem.A;
 tic
-R = chol(A);
+dA = decomposition(A,'chol','lower');
+%R = chol(A);
 toc
 
-R2 = decomposition(A, 'chol', 'lower');
+sizeA = size(A,1);
+xe = ones(1,sizeA);
+b = xe*A;
+x = b/dA;
+
+xe = ones(sizeA,1);
+b = A*xe;
+
+x1 = R \ (R' \ b);
+
+
 
 clear Problem path fileName;
 
