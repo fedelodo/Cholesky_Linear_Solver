@@ -225,3 +225,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+python/report.csv
+
+.idea/**
