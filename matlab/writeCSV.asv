@@ -4,7 +4,7 @@ function writeCSV()
     files = dir(strcat(path,'*.mat'));
     for i=1:length(files)
         load(sprintf(strcat(path,'%s'), files(i).name));
-        disp(strcat("run ", Problem.name));
+        disp(Problem.name);
         A = Problem.A;
         sizeA = size(A,1);
         xe = ones(1,sizeA);
@@ -28,6 +28,6 @@ function writeCSV()
         csvOut = [csvOut; res];
     end
     clearvars -except csvOut
-    writematrix(csvOut, "outputMatlab.csv", 'Delimiter', 'semi');
+    writematrix(csvOut, "output.csv", 'Delimiter', 'semi');
 end
 
