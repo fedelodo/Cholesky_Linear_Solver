@@ -10,16 +10,20 @@ function writeCSV()
         xe = ones(1,sizeA);
         b = xe*A;
 
-        tic
-        x = solveSystemChol(A, b);
-        toc
-        f = @() solveSystemChol(A, b);
-        t = timeit(f);
-        erel = norm(x-xe) / norm(xe);
+        try
+            %tic
+            x = solveSystemChol(A, b);
+            %toc
+            f = @() solveSystemChol(A, b);
+            t = timeit(f);
+            erel = norm(x-xe) / norm(xe);
 
-        name = convertCharsToStrings(Problem.name);
+            name = convertCharsToStrings(Problem.name);
 
-        res = [name sizeA t erel];
+            res = [name sizeA t erel];
+        catch exception
+            res = ["outMem" "outMem" "outMem" "outMem"];
+        end
         csvOut = [csvOut; res];
     end
     clearvars -except csvOut
