@@ -1,7 +1,5 @@
 close all;
 clear all;
-clc;
-%%
 
 fileName = 'ex15.mat';
 %fileName = 'shallow_water1.mat';
@@ -56,6 +54,15 @@ res = [name sizeA t erel];
 out = [out; name sizeA t erel];
 writematrix(out, "output.csv", 'Delimiter', 'semi');
 
+%%
+path = path = '../matrices/';
+files = dir('*.mat');
+for i=1:length(files)
+    sprintf(strcat(files.folder,'%s'), files.name)
+    %load(sprintf(strcat(path,'%s'), fileName))
+end
+
+%reportLine = {'Matrix': f, 'Size': size, 'MemoryUsage': mem_usage, 'Time': fntime, 'RelativeError': erel}
 %%
 clear Problem path fileName;
 
