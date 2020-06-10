@@ -9,7 +9,7 @@ function writeCSV()
         sizeA = size(A,1);
         xe = ones(1,sizeA);
         b = xe*A;
-
+        
         try
             %tic
             x = solveSystemChol(A, b);
@@ -19,15 +19,15 @@ function writeCSV()
             erel = norm(x-xe) / norm(xe);
 
             name = convertCharsToStrings(Problem.name);
-
             res = [name sizeA t "null" erel];
         catch exception
             name = convertCharsToStrings(Problem.name);
-            res = [name "outMem" "outMem" "null" "outMem"];
+            res = [name sizeA "outOfMem" "outOfMem" "outOfMem"];
         end
         csvOut = [csvOut; res];
     end
     clearvars -except csvOut
     writematrix(csvOut, "outputMatlab.csv", 'Delimiter', 'semi');
+    
 end
 
