@@ -3,10 +3,10 @@ clear all;
 clc;
 %%
 
-%fileName = 'ex15.mat';
+fileName = 'ex15.mat';
 %fileName = 'shallow_water1.mat';
 %fileName = 'apache2.mat';
-fileName = 'Flan_1565.mat';
+%fileName = 'Flan_1565.mat';
 
 path = '../matrices/';
 load(sprintf(strcat(path,'%s'), fileName));

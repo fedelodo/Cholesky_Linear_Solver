@@ -1,3 +1,10 @@
 Name;Size;Time;MemoryUsage;Error
-FIDAP/ex15;6867;0.020285;null;6.6495e-07
-MaxPlanck/shallow_water1;81920;0.41338;null;2.3903e-16
+Janna/Flan_1565;1564794;outOfMem;outOfMem;outOfMem
+AMD/G3_circuit;1585478;6.8009;2366853120;3.5748e-12
+Janna/StocF-1465;1465137;outOfMem;outOfMem;outOfMem
+GHS_psdef/apache2;715176;4.9073;1985646592;4.3926e-11
+Rothberg/cfd1;70656;0.888;427073536;1.0941e-13
+Rothberg/cfd2;123440;1.8151;827076608;3.9662e-13
+FIDAP/ex15;6867;0.02557;2715648;6.3858e-07
+Wissgott/parabolic_fem;525825;1.54;543563776;1.0498e-12
+MaxPlanck/shallow_water1;81920;0.13746;45547520;2.3773e-16

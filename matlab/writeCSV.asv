@@ -1,33 +1,45 @@
-function writeCSV()
+function p = writeCSV()
+    
     csvOut = ["Name" "Size" "Time" "MemoryUsage" "Error"];
     path = '../matrices/';
     files = dir(strcat(path,'*.mat'));
-    for i=1:length(files)
+    for i=1:1%length(files)
         load(sprintf(strcat(path,'%s'), files(i).name));
-        disp(Problem.name);
+        disp(strcat("run ", Problem.name));
         A = Problem.A;
         sizeA = size(A,1);
         xe = ones(1,sizeA);
         b = xe*A;
-
+        
         try
-            %tic
+            profile clear;
+            profile('-memory','on');
+            setpref('profiler','showJitLines',1);
+            
             x = solveSystemChol(A, b);
-            %toc
-            f = @() solveSystemChol(A, b);
-            t = timeit(f);
+            %f = @() solveSystemChol(A, b);
+            %t = timeit(f);
             erel = norm(x-xe) / norm(xe);
-
+            
+            profilerInfo = 
+            
+            t = ; %Profiler Time
+            mem = 0;
+            
             name = convertCharsToStrings(Problem.name);
-
-            res = [name sizeA t "null" erel];
+            res = [name sizeA t mem erel];
         catch exception
             name = convertCharsToStrings(Problem.name);
-            res = [name "outMem" "outMem" "null" "outMem"];
+            res = [name sizeA "outOfMem" "outOfMem" "outOfMem"];
         end
         csvOut = [csvOut; res];
     end
     clearvars -except csvOut
-    writematrix(csvOut, "output.csv", 'Delimiter', 'semi');
+    writematrix(csvOut, "outputMatlab.csv", 'Delimiter', 'semi');
+    
+    p = profile('info')
+    
+    profile viewer;
+    
 end
 
