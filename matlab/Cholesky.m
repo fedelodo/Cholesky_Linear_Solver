@@ -5,7 +5,7 @@ fileName = 'ex15.mat';
 %fileName = 'shallow_water1.mat';
 %fileName = 'apache2.mat';
 
-path = 'C:\\Users\\lisac\\OneDrive - Universita degli Studi di Milano-Bicocca\\Magistrale\\Appunti magistrale\\2° semestre\\Metodi del calcolo scientifico\\Progetti\\Progetto1\\Matrix\\';
+path = '../matrices/';
 load(sprintf(strcat(path,'%s'), fileName));
 
 %% chol%{
@@ -30,14 +30,15 @@ x = b/dA;
 toc
 
 %% function
+%profile on;
+%profile('-memory','on');
+%setpref('profiler','showJitLines',1);
+
 A = Problem.A;
 sizeA = size(A,1);
 xe = ones(1,sizeA);
 b = xe*A;
 
-profile on;
-              profile('-memory','on');
-              setpref('profiler','showJitLines',1);
 tic
 x = solveSystemChol(A, b);
 toc

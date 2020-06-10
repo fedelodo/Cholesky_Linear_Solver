@@ -7,7 +7,7 @@ This tool accepts Matrix Market files (.mtx).
 This script requires that `scipy` and 'memory-profiler` to be installed within the Python
 environment you are running this script in.
 
-This script looks for all the .mtx files inside the matrixes folder that is placed in the root
+This script looks for all the .mtx files inside the matrices folder that is placed in the root
 of the project.
 The mtx file is read and then the size is extracted to generate the exact solution vector made
 (xe = [1 1 1 1 ... 1 1],a perf_counter time is then acquired and the computation is started inside
@@ -80,7 +80,7 @@ def writeCsv(filename, data, headers):
         csvfile.close()
 
 if __name__ == '__main__':
-    for f in glob("../matrixes/*.mtx"):
+    for f in glob("../matrices/*.mtx"):
         print('Starting with' + f)
         A = mmread(f)
         size = A.shape[0]
