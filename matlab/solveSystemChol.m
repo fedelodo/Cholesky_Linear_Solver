@@ -1,5 +1,5 @@
 function x = solveSystemChol(A, b)
-    dA = decomposition(A,'chol','lower');
-    x = b/dA;
+    R = decomposition(A,'chol','lower');
+    x = b / R;
 end
 

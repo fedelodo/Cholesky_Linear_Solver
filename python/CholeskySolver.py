@@ -72,7 +72,7 @@ def writeCsv(filename, data, headers):
 
     file_exists = os.path.isfile(filename)
     with open(filename, 'a') as csvfile:
-        writer = csv.DictWriter(csvfile, delimiter=',', lineterminator='\n', fieldnames=headers)
+        writer = csv.DictWriter(csvfile, delimiter=';', lineterminator='\n', fieldnames=headers)
         if not file_exists:
             writer.writeheader()
 

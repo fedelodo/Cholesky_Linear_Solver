@@ -11,6 +11,7 @@ file = "ex15.mat";
     xe = ones(1,sizeA);
     b = xe*A;
 
+    profile off;
     profile clear;
     profile on;
     %setpref('profiler','showJitLines',1);

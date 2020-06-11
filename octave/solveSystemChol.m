@@ -1,5 +1,7 @@
 function x = solveSystemChol(A, b)
-    dA = chol(A,'lower');
-    x = b/dA;
+    R = chol(A,'lower');
+    x = b / (R * R');
+    %x = dA / (dA' \ b);
+    %x = b / dA;
 end
 

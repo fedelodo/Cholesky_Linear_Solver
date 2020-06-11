@@ -13,11 +13,13 @@ function writeCSV()
         name = Problem.name;
         
         try
+            profile off;
             profile clear;
-            profile('-memory','on');
-            setpref('profiler','showJitLines',1);
+            profile on;
             
             x = solveSystemChol(A, b);
+            
+            profile off;
             
             erel = norm(x-xe) / norm(xe);
             
@@ -27,16 +29,18 @@ function writeCSV()
             functionRow = find(strcmp(functionNames(:), 'solveSystemChol'));
 
             t = profilerInfo.FunctionTable(functionRow).TotalTime; 
-            mem = profilerInfo.FunctionTable(functionRow).TotalMemAllocated; 
+            mem = "N/A";%profilerInfo.FunctionTable(functionRow).TotalMemAllocated; 
+            
             
             res = {name, num2str(sizeA), num2str(t), num2str(mem), num2str(erel)};
         catch exception
-            res = [name sizeA "N/A" "N/A" "N/A"];
+            disp(exception.message);
+            res = {name, sizeA, "N/A", "N/A", "N/A"};
         end_try_catch
         csvOut = [csvOut ; res];
     end
     clearvars -except csvOut
 
-    cellToCSV("outputOctaveTest.csv", csvOut);
+    cellToCSV("outputOctave.csv", csvOut);
 end
 
