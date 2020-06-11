@@ -92,4 +92,4 @@ if __name__ == '__main__':
         erel = norm(x - xe) / norm(xe)
         mem_usage = max(mem_usage)
         reportLine = {'Matrix': f, 'Size': size, 'MemoryUsage': mem_usage, 'Time': fntime, 'RelativeError': erel}
-        writeCsv('report.csv', reportLine, [*reportLine])
+        writeCsv('reports/Pythonreport.csv', reportLine, [*reportLine])
