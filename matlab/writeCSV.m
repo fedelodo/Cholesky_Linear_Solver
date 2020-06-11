@@ -10,6 +10,8 @@ function writeCSV()
         sizeA = size(A,1);
         xe = ones(1,sizeA);
         b = xe*A;
+		
+		name = convertCharsToStrings(Problem.name);
         
         try
             profile clear;
@@ -17,8 +19,7 @@ function writeCSV()
             setpref('profiler','showJitLines',1);
             
             x = solveSystemChol(A, b);
-            %f = @() solveSystemChol(A, b);
-            %t = timeit(f);
+
             erel = norm(x-xe) / norm(xe);
             
             profilerInfo = profile('info');
@@ -29,11 +30,9 @@ function writeCSV()
             t = profilerInfo.FunctionTable(functionRow).TotalTime; 
             mem = profilerInfo.FunctionTable(functionRow).TotalMemAllocated; 
             
-            name = convertCharsToStrings(Problem.name);
             res = [name sizeA t mem erel];
         catch exception
-            name = convertCharsToStrings(Problem.name);
-            res = [name sizeA "outOfMem" "outOfMem" "outOfMem"];
+            res = [name sizeA "N/A" "N/A" "N/A"];
         end
         csvOut = [csvOut; res];
     end
