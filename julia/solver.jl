@@ -12,7 +12,6 @@ end
 
 cd("../matrices/")
 files = sort(glob("*.mtx"), by=filesize)
-println(files)
 for (index, file) in enumerate(files)
   println("Start working on $file")
   A = MatrixMarket.mmread(file)
