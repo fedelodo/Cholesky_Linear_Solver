@@ -2,6 +2,7 @@ using MatrixMarket
 using LinearAlgebra
 using CSV
 using DataFrames
+using Glob
 
 function systemSolver(A, xe)
   b = A * xe
@@ -10,7 +11,8 @@ function systemSolver(A, xe)
 end
 
 cd("../matrices/")
-files = readdir()
+files = glob("*.mtx")
+println(files)
 for (index, file) in enumerate(files)
   A = MatrixMarket.mmread(file)
   xe = ones(Int,size(A)[1])
