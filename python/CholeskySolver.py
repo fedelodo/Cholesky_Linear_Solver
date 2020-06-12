@@ -80,7 +80,7 @@ def writeCsv(filename, data, headers):
         csvfile.close()
 
 if __name__ == '__main__':
-    for f in glob("../matrices/*.mtx"):
+    for f in (sorted(glob('"../matrices/*.mtx"'), key=os.path.getsize)):
         print('Starting with' + f)
         A = mmread(f)
         size = A.shape[0]
