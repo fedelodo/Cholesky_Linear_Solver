@@ -1,10 +1,12 @@
 function writeCSV()
     csvOut = {"Name", "Size", "Time", "MemoryUsage", "Error"};
     path = '../matrices/';
-    files = dir(strcat(path,'*.mat'));
+    outPath = '../reports/';
+    files = quickSortFileSize(dir(strcat(path,'*.mat')));
+    
     for i=1:length(files)
         load(sprintf(strcat(path,'%s'), files(i).name));
-        disp(strcat("run ", Problem.name));
+        disp(cstrcat('run ', Problem.name));
         A = Problem.A;
         sizeA = size(A,1);
         xe = ones(1,sizeA);
@@ -39,8 +41,8 @@ function writeCSV()
         end_try_catch
         csvOut = [csvOut ; res];
     end
-    clearvars -except csvOut
 
-    cellToCSV(getNewFileName("outputOctave", 0), csvOut);
+    outFileName = strcat(outPath,"OctaveReport");
+    cellToCSV(getNewFileName(outFileName, 0), csvOut);
 end
 

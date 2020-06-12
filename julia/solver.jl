@@ -22,5 +22,5 @@ for (index, file) in enumerate(files)
   err = norm(timing[1]-xe)/norm(xe)
   out = DataFrame(MatriName=file,Size=size(A)[1],MemoryUsage=mem,
         Time=t,RelativeError=err)
-  CSV.write("../reports/Juliareport.csv", out,writeheader = (index==1), append=true)
+  CSV.write("../reports/Juliareport.csv", out,writeheader = (index==1), append=true, delim=';')
 end
