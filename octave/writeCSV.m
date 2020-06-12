@@ -41,6 +41,6 @@ function writeCSV()
     end
     clearvars -except csvOut
 
-    cellToCSV("outputOctave.csv", csvOut);
+    cellToCSV(getNewFileName("outputOctave", 0), csvOut);
 end
 

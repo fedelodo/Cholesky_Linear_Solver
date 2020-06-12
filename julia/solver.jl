@@ -9,7 +9,7 @@ function systemSolver(A, xe)
   x = dA \ b
 end
 
-cd("../matrixes/")
+cd("../matrices/")
 files = readdir()
 for (index, file) in enumerate(files)
   A = MatrixMarket.mmread(file)
