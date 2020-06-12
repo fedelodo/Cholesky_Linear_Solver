@@ -11,9 +11,10 @@ function systemSolver(A, xe)
 end
 
 cd("../matrices/")
-files = glob("*.mtx")
+files = sort(glob("*.mtx"), by=filesize)
 println(files)
 for (index, file) in enumerate(files)
+  println("Start working on $file")
   A = MatrixMarket.mmread(file)
   xe = ones(Int,size(A)[1])
   timing = @timed systemSolver(A,xe)
