@@ -1,5 +1,5 @@
 function writeCSV()
-    title = ["Name" "Size" "Time" "MemoryUsage" "Error"];
+    title = ["Name" "Size" "Time" "MemoryUsage" "RelativeError"];
     path = '../matrices/';
     outPath = '../reports/';
     outFileName = getNewFileName(strcat(outPath,"MatlabReport"),0);
