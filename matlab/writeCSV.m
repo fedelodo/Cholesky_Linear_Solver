@@ -1,7 +1,9 @@
 function writeCSV()
-    csvOut = ["Name" "Size" "Time" "MemoryUsage" "Error"];
+    title = ["Name" "Size" "Time" "MemoryUsage" "Error"];
     path = '../matrices/';
     outPath = '../reports/';
+    outFileName = getNewFileName(strcat(outPath,"MatlabReport"),0);
+    writematrix(title, strcat(outPath, outFileName), 'Delimiter', 'semi');
     files = quickSortFileSize(dir(strcat(path,'*.mat')));
     
     for i=1:length(files)
@@ -36,12 +38,9 @@ function writeCSV()
             disp(exception.message);
             res = [name sizeA "N/A" "N/A" "N/A"];
         end
-        csvOut = [csvOut; res];
-    end
-    
-    outFileName = strcat(outPath,"MatlabReport");
-    writematrix(csvOut, strcat(outPath, getNewFileName(outFileName, 0)), 'Delimiter', 'semi');
         
-    %profile viewer;
+        writematrix(res, outFileName, 'WriteMode', 'append', 'Delimiter', 'semi');
+    end
+
 end
 
