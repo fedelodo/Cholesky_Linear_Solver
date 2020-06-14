@@ -31,7 +31,7 @@ function writeCSV()
             functionRow = find(strcmp(functionNames(:), 'solveSystemChol'));
 
             t = profilerInfo.FunctionTable(functionRow).TotalTime; 
-            mem = "N/A";%profilerInfo.FunctionTable(functionRow).TotalMemAllocated; 
+            mem = "N/A"; %profilerInfo.FunctionTable(functionRow).TotalMemAllocated; 
             
             
             res = {name, num2str(sizeA), num2str(t), num2str(mem), num2str(erel)};
